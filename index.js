@@ -84,7 +84,7 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', (req, res) => {
+  .get('/api', (req, res) => {
     console.log('1')
     makeMagic()
     return res.render('pages/index')
@@ -93,5 +93,5 @@ express()
 
 
 setInterval(function() {
-  http.get("http://nameless-plains-69824.herokuapp.com");
+  http.get("http://nameless-plains-69824.herokuapp.com/api");
 }, timeInterval); // every 5 minutes (300000)
