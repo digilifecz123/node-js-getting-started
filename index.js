@@ -10,6 +10,23 @@ const fs = require("fs") ;
 const sgMail = require("@sendgrid/mail");
 
 
+sgMail.setApiKey(
+  "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"
+);
+
+let number = 0;
+let oldPageString;
+const timeInterval = 5000;
+
+const msg = {
+  to: "thenewworld@seznam.cz",
+  from: "ahoj@jaksemaas.cz",
+  subject: "TKY MotherFucker",
+  text: "https://www.thekey.vip/",
+  html: "<a href=`https://www.thekey.vip/`>thekey</a>"
+};
+
+
 
 const makeMagic = () => {
   const date = new Date();
@@ -68,22 +85,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {
-    sgMail.setApiKey(
-      "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"
-    );
-    
-    let number = 0;
-    let oldPageString;
-    const timeInterval = 60000;
-    
-    const msg = {
-      to: "thenewworld@seznam.cz",
-      from: "ahoj@jaksemaas.cz",
-      subject: "TKY MotherFucker",
-      text: "https://www.thekey.vip/",
-      html: "<a href=`https://www.thekey.vip/`>thekey</a>"
-    };
-    console.log('make magic!!!')
+    console.log('1')
     makeMagic()
     return res.render('pages/index')
   })
@@ -91,5 +93,5 @@ express()
 
 
 setInterval(function() {
-  http.get("http://nameless-plains-69824.herokuapp.com/");
-}, 10000); // every 5 minutes (300000)
+  http.get("http://nameless-plains-69824.herokuapp.com");
+}, timeInterval); // every 5 minutes (300000)
