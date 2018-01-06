@@ -114,7 +114,7 @@ express()
    http.get("http://nameless-plains-69824.herokuapp.com/initialCall");
    num++
   }
-  setInterval(() => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"), 300000);
+  setInterval(() => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"), 1500000);
 
   
 })();
