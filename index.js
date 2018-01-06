@@ -82,7 +82,7 @@ express()
     var number = 0;
     var oldPageString;
     console.log(makeMagic);
-    return setInterval(makeMagic, 1000000000000000);
+    return setInterval(makeMagic, 30000);
 
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}!!!!!!!!!!!!`));
@@ -92,10 +92,5 @@ express()
 
 (function doStuff() {
   // setInterval(makeMagic, 2000); // every 5 minutes (300000)
-    setInterval(function() {
-
-      console.log(1)
-      makeMagic();
       http.get("http://nameless-plains-69824.herokuapp.com");
-    }, 100000000000000000000); // every 5 minutes (300000
 })();
