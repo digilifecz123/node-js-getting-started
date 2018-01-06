@@ -11,11 +11,15 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
+    "cheerio": "^1.0.0-rc.2",
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.0"
   },
   "devDependencies": {
-    "request": "^2.81.0",
+    "request": "^2.83.0",
     "tape": "^4.7.0"
   },
   "repository": {
