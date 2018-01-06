@@ -59,9 +59,9 @@ const makeMagic = () => {
           const msg = {
             to: "thenewworld@seznam.cz",
             from: "ahoj@jaksemaas.cz",
-            subject: "TKY MotherFucker",
+            subject: "TKY new",
             text: `${domBody}`,
-            html: "<a href=`https://www.thekey.vip/`>thekey</a>"
+            html: `${domBody}`,
           };
           console.log("not the same");
 
@@ -82,7 +82,7 @@ express()
     var number = 0;
     var oldPageString;
     console.log(makeMagic);
-    return setInterval(makeMagic, 30000);
+    return setInterval(makeMagic, 60000);
 
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}!!!!!!!!!!!!`));
@@ -90,7 +90,6 @@ express()
 
 
 
-(function doStuff() {
-  // setInterval(makeMagic, 2000); // every 5 minutes (300000)
-      http.get("http://nameless-plains-69824.herokuapp.com");
+(function initialCall() {
+  http.get("http://nameless-plains-69824.herokuapp.com");
 })();
