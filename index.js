@@ -60,7 +60,7 @@ const makeMagic = () => {
             to: "thenewworld@seznam.cz",
             from: "ahoj@jaksemaas.cz",
             subject: "TKY MotherFucker",
-            text: "https://www.thekey.vip/",
+            text: `${domBody}`,
             html: "<a href=`https://www.thekey.vip/`>thekey</a>"
           };
           console.log("not the same");
