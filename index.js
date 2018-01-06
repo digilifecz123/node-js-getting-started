@@ -94,4 +94,4 @@ express()
 
 setInterval(function() {
   http.get("http://nameless-plains-69824.herokuapp.com/api");
-}, timeInterval); // every 5 minutes (300000)
+}, 30000); // every 5 minutes (300000)
