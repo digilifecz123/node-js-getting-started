@@ -27,8 +27,8 @@ const makeMagic = () => {
 
   if (number === 0) {
     request(
-      "http://www.phung.cz",
-      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
+      // "http://www.phung.cz",
+      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
       function(err, resp, html) {
         let $page = cheerio.load(html);
         $page(".view-id-media_video").remove();
@@ -43,8 +43,8 @@ const makeMagic = () => {
     );
   } else {
     request(
-      "http://www.phung.cz",
-      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
+      // "http://www.phung.cz",
+      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
       function(err, resp, dom) {
         let $page = cheerio.load(dom);
         $page(".view-id-media_video").remove();
@@ -88,16 +88,16 @@ express()
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
-  .get("/", (req, res) => {
-    return setInterval(makeMagic, 1000);
+  .get("/initialCall", (req, res) => {
+    return setInterval(makeMagic, 20000);
 
   })
-  .get("/alive", (req, res) => {
+  .get("/old", (req, res) => {
     // I'm I alive endpoint
     return res.send(oldPageString ? oldPageString : '<h1>no content</h1>')
 
   })
-  .get("/aliveNew", (req, res) => {
+  .get("/new", (req, res) => {
     // I'm I alive endpoint
     return res.send(newPageString ? newPageString : '<h1>no content</h1>')
 
@@ -107,9 +107,17 @@ express()
 
 
 // this IFFEE is only for heroku 
-// (function initialCall() { 
-//   http.get("http://nameless-plains-69824.herokuapp.com");
-// })();
+(function initialCall() { 
+  var num = 0;
+  
+  if(num === 0) {
+   http.get("http://nameless-plains-69824.herokuapp.com/initialCall");
+   num++
+  }
+  setInterval(() => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"), 300000);
+
+  
+})();
 
 // to run the code localy `yarn start` and go to localhost:5000
 
