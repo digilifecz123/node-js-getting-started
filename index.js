@@ -16,7 +16,7 @@ sgMail.setApiKey(
 
 let number = 0;
 let oldPageString;
-const timeInterval = 5000;
+const timeInterval = 60000;
 
 const msg = {
   to: "thenewworld@seznam.cz",
@@ -53,7 +53,7 @@ const makeMagic = () => {
         });
       }
     );
-  } else {
+  } else if(number === 1) {
     request(
       "http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm",
       function(err, resp, dom) {
