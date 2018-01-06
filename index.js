@@ -14,7 +14,7 @@ sgMail.setApiKey(
   "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"
 );
 
-let number = 0;
+
 let oldPageString;
 const timeInterval = 60000;
 
@@ -29,6 +29,7 @@ const msg = {
 
 
 const makeMagic = () => {
+  let number = 0;
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -66,7 +67,6 @@ const makeMagic = () => {
           fs.writeFile(`./file-${currentTime}.html`, domBody, err => {
             if (err) return;
             console.log("File has been created");
-            number = 0;
             return;
           });
 
