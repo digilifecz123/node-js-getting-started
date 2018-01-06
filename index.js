@@ -11,6 +11,7 @@ const sgMail = require("@sendgrid/mail");
 
 var number = 0;
 var oldPageString;
+var newPageString;
 
 const makeMagic = () => {
 
@@ -26,8 +27,8 @@ const makeMagic = () => {
 
   if (number === 0) {
     request(
-      // "http://www.phung.cz",
-      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
+      "http://www.phung.cz",
+      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
       function(err, resp, html) {
         let $page = cheerio.load(html);
         $page(".view-id-media_video").remove();
@@ -42,12 +43,13 @@ const makeMagic = () => {
     );
   } else {
     request(
-      // "http://www.phung.cz",
-      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
+      "http://www.phung.cz",
+      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
       function(err, resp, dom) {
         let $page = cheerio.load(dom);
         $page(".view-id-media_video").remove();
         let domBody = $page("body").html();
+        newPageString = $page("body").html();
 
         if (oldPageString !== domBody && number === 1) {
           // fs.writeFile(`./file-${currentTime}.html`, domBody, err => {
@@ -87,12 +89,17 @@ express()
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => {
-    return setInterval(makeMagic, 60000);
+    return setInterval(makeMagic, 1000);
 
   })
   .get("/alive", (req, res) => {
     // I'm I alive endpoint
-    return res.render('pages/index')
+    return res.send(oldPageString ? oldPageString : '<h1>no content</h1>')
+
+  })
+  .get("/aliveNew", (req, res) => {
+    // I'm I alive endpoint
+    return res.send(newPageString ? newPageString : '<h1>no content</h1>')
 
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}!`));
@@ -100,9 +107,9 @@ express()
 
 
 // this IFFEE is only for heroku 
-(function initialCall() {
-  http.get("http://nameless-plains-69824.herokuapp.com");
-})();
+// (function initialCall() { 
+//   http.get("http://nameless-plains-69824.herokuapp.com");
+// })();
 
 // to run the code localy `yarn start` and go to localhost:5000
 
