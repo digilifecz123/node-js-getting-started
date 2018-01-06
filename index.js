@@ -87,7 +87,7 @@ express()
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => {
-    return setInterval(makeMagic, 500);
+    return setInterval(makeMagic, 60000);
 
   })
   .get("/alive", (req, res) => {
