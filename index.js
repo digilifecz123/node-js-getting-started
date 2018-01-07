@@ -12,6 +12,7 @@ var number = 0;
 var email = 0;
 var oldPageString = null;
 var newPageString = null;
+var superNewPage = null;
 
 const getTime = () => {
   const date = new Date();
@@ -75,6 +76,7 @@ const makeMagic = () => {
             };
             sgMail.send(msgHtml);
             sgMail.send(msg);
+            superNewPage = `<h1>${getTime()}</h1>${newPageString}`;
             console.log("email send");
             email++;
           }
@@ -110,7 +112,7 @@ express()
     // I'm I alive endpoint
     return res.send(
       newPageString
-        ? `<h1>${getTime()}</h1>${newPageString}`
+        ? `${superNewPage}`
         : "<h1>still no new page update</h1>"
     );
   })
