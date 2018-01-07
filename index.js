@@ -120,8 +120,8 @@ express()
 (function initialCall() {
   var init = 0;
   if (init === 0) {
-    http.get("http://nameless-plains-69824.herokuapp.com/initialCall");
     init++;
+    return http.get("http://nameless-plains-69824.herokuapp.com/initialCall");
   } else {
     setInterval(
       () => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"),
