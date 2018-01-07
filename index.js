@@ -92,8 +92,8 @@ express()
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/initialCall", (req, res) => {
-    // return setInterval(makeMagic, 90000);
-    return setInterval(makeMagic, 3000);
+    return setInterval(makeMagic, 90000);
+    // return setInterval(makeMagic, 3000);
   })
   .get("/", (req, res) => {
     return res.send("<h1>I am alive</h1>");
