@@ -77,6 +77,7 @@ const makeMagic = () => {
             sgMail.send(msgHtml);
             sgMail.send(msg);
             superNewPage = `<h1>${getTime()}</h1>${newPageString}`;
+            console.log(superNewPage)
             console.log("email send");
             email++;
           }
@@ -104,7 +105,7 @@ express()
     // I'm I alive endpoint
     return res.send(
       oldPageString
-        ? `<h1>${getTime()}</h1>${oldPageString}`
+        ? oldPageString
         : "<h1>no content</h1>"
     );
   })
