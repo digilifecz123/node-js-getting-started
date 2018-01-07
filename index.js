@@ -33,8 +33,8 @@ const makeMagic = () => {
       // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
       function(err, resp, html) {
         let $page = cheerio.load(html);
-        oldPageString = $page("body").html();
-        newPageString = $page("body").html();
+        oldPageString = $page("footer").html();
+        newPageString = $page("footer").html();
         // fs.writeFile(`./file.html`, oldPageString, err => {
         //   if (err) return;
         //   console.log("default file has been created");
@@ -49,7 +49,7 @@ const makeMagic = () => {
       // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
       function(err, resp, dom) {
         let $page = cheerio.load(dom);
-        newPageString = $page("body").html();
+        newPageString = $page("footer").html();
 
         if (oldPageString !== newPageString) {
           // fs.writeFile(`./file-${getTime()}.html`, newPageString, err => {
