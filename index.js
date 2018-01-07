@@ -13,22 +13,27 @@ var number = 0;
 var oldPageString;
 var newPageString;
 
+const getTime = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const second = date.getSeconds();
+
+  const currentTime = `${year}-${month}-${day}-${hour}:${minute}:${second}`;
+  return currentTime;
+}
+
 const makeMagic = () => {
 
-  // const date = new Date();
-  // const year = date.getFullYear();
-  // const month = date.getMonth() + 1;
-  // const day = date.getDate();
-  // const hour = date.getHours();
-  // const minute = date.getMinutes();
-  
 
-  // const currentTime = `${year}-${month}-${day}-${hour}:${minute}`;
 
   if (number === 0) {
     request(
-      // "http://www.phung.cz",
-      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
+      "http://www.thekey.vip",
+      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm', 
       function(err, resp, html) {
         let $page = cheerio.load(html);
         $page(".view-id-media_video").remove();
@@ -43,8 +48,8 @@ const makeMagic = () => {
     );
   } else {
     request(
-      // "http://www.phung.cz",
-      'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
+      "http://www.thekey.vip",
+      // 'http://help.websiteos.com/websiteos/example_of_a_simple_html_page.htm',
       function(err, resp, dom) {
         let $page = cheerio.load(dom);
         $page(".view-id-media_video").remove();
@@ -62,17 +67,24 @@ const makeMagic = () => {
           );
           const msg = {
             to: "thenewworld@seznam.cz",
-            from: "ahoj@jaksemaas.cz",
-            subject: "TKY new",
+            from: "ahoj@thekey.com",
+            subject: "old page",
             text: `${domBody}`,
           };
           const msgHtml = {
             to: "thenewworld@seznam.cz",
-            from: "ahoj@jaksemaas.cz",
-            subject: "TKY new html",
+            from: "ahoj@thekey.com",
+            subject: "tky new",
+            html: `${domBody}`,
+          };
+          const msgHtmlMarek = {
+            to: "mfeikus@gmail.com",
+            from: "ahoj@thekey.com",
+            subject: "tky new",
             html: `${domBody}`,
           };
           sgMail.send(msgHtml);
+          sgMail.send(msgHtmlMarek);
           sgMail.send(msg);
           console.log('email send')
          return number++
@@ -89,17 +101,23 @@ express()
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/initialCall", (req, res) => {
-    return setInterval(makeMagic, 20000);
+    return setInterval(makeMagic, 90000);
+        // return setInterval(makeMagic, 2000);
+
+  })
+  .get("/", (req, res) => {
+    // return setInterval(makeMagic, 90000);
+        return res.send('<h1>I am alive</h1>')
 
   })
   .get("/old", (req, res) => {
     // I'm I alive endpoint
-    return res.send(oldPageString ? oldPageString : '<h1>no content</h1>')
+    return res.send(oldPageString ? `<h1>${getTime()}</h1>${oldPageString}` : '<h1>no content</h1>')
 
   })
   .get("/new", (req, res) => {
     // I'm I alive endpoint
-    return res.send(newPageString ? newPageString : '<h1>no content</h1>')
+    return res.send(newPageString ? `<h1>${getTime()}</h1>${newPageString}` : '<h1>still no new page update</h1>')
 
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}!`));
@@ -114,10 +132,5 @@ express()
    http.get("http://nameless-plains-69824.herokuapp.com/initialCall");
    num++
   }
-  setInterval(() => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"), 1500000);
-
-  
+  setInterval(() => http.get("http://nameless-plains-69824.herokuapp.com/initialCall"), 1740000); //29 min
 })();
-
-// to run the code localy `yarn start` and go to localhost:5000
-
